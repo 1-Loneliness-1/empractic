@@ -1,5 +1,10 @@
 plugins {
     kotlin("jvm") version "2.2.20"
+    application
+}
+
+application {
+    mainClass.set("org.example.MainKt")
 }
 
 group = "org.example"
@@ -10,6 +15,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     testImplementation(kotlin("test"))
 }
 
