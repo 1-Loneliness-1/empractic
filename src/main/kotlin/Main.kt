@@ -1,16 +1,43 @@
 package org.example
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+import kotlinx.coroutines.cancel
+import org.example.model.*
+import org.example.utils.TimeConverter
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
-    }
+
+fun main() {
+    val appStartTime: String by AppStartTimeDelegate(AppLevelScope)
+    val listWithManyTypes: List<Any> = listOf(
+        Student("13235", "Peter", 22),
+        "Some string",
+        666L,
+        Key(5, "some"),
+        'c',
+        22,
+        1.23,
+        false,
+        14L
+    )
+
+
+
+    // Task 1 data класс может быть использован, но это не безопасно, потому что свойство field2 можно изменить
+    // что приведет к тому, что мы не сможем больше получать значение по ключу
+    // val key1 = Key(11, "key1")
+    // val key2 = Key(22, "key2")
+    // val someMap: HashMap<Key, String> = hashMapOf(key1 to "value1", key2 to "value2")
+    // println(someMap.get(key1))
+    // key1.field2 = "changedKey1"
+    // println(someMap.get(key1))
+    // Task 2
+    println("App was launched in: $appStartTime")
+    Thread.sleep(10000)
+    AppLevelScope.cancel()
+    // Task 3
+    // println("Press Enter to view the first Int in the list.")
+    // readlnOrNull()
+    // println("First Int in list is: ${listWithManyTypes.searchInt() ?: "nothing"}")
+    // Task 4
+    //val someListWithInts: ArrayList<Int?> = arrayListOf(66, null, 1, -50, 120, 1, null, null)
+    //doShakeSort(someListWithInts)
 }
