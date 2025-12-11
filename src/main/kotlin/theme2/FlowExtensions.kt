@@ -33,8 +33,8 @@ fun <T> Flow<T>.throttleLatest(interval: Long = 0L): Flow<T> = channelFlow {
                     send(it)
                     lastValue = null
                 }
+                timer = null
             }
-            timer = null
         }
     }
 }
